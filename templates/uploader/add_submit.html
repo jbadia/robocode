@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Add form{% endblock %}
+
+{% block content %}
+<h2>Presentar</h2>
+  <form name="presentar" enctype="multipart/form-data" action="/upload/add/submit/" method="post">
+    <table>
+      <tr>
+        <th><label for="id_title">Títol:</label></th>
+        <td><input id="id_title" type="text" name="title" maxlength="50" /></td>
+        <td><div id="title" class="erroni">Titol invàlid</div></td>
+      </tr>
+      <tr>
+        <th><label for="id_file">Fitxer:</label></th>
+        <td><input type="file" name="file" id="id_file" /></td>
+        <td><div id="file" class="erroni">Adjunteu un fitxer</div></td>
+      </tr>
+      <tr>
+        <th><label for="id_category">Categoria:</label></th>
+        <td>
+          <select name="category" id="id_category">
+          {% for categoria in categories %}
+            <option value="{{categoria.0}}" > {{categoria.1}} </option>
+          {% endfor %}
+          </select>
+        </td>
+        <td><div id="categori" class="erroni">&nbsp;</div></td>
+      </tr>
+      <tr>
+        <th><label for="id_comments">Descripció:</label></th>
+        <td><textarea id="id_comments" rows="10" cols="40" name="comments"></textarea></td>
+        <td><div id="comments" class="erroni">Falta una breu descripció</div></td>
+      </tr>
+    </table>
+    <input type="hidden" name="user" value="{{ user.id }}">
+    <input class="boto" type="button" value="Presentar" onClick="validarFormulariSubmit()">
+  </form>
+{% endblock %}

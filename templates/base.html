@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="/site_media/js/fitxer.js"></script>
+<title>Robocode</title>
+
+<!-- add your meta tags here -->
+
+<link href="/site_media/css/content_default.css" rel="stylesheet" type="text/css" />
+<link href="/site_media/css/basemod.css" rel="stylesheet" type="text/css" />
+
+<!--[if lte IE 7]>
+<link href="/site_media/css/patch_my_layout.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+</head>
+<body>
+  <div class="page_margins">
+    <div id="border-top">
+      <div id="edge-tl"></div>
+      <div id="edge-tr"></div>
+    </div>
+    <div class="page">
+      <div id="header">
+        <img src="/site_media/img/robocode_logo_tanks.png">
+      </div>
+      <div id="info">
+        {% if user.is_authenticated %}
+        Benvingut {{ user.username }}. <a href='/logout/'>Tancar sessió</a>
+        {% else %}
+        Benvigut. 
+        <a href='/login/'>Accedir</a> o
+        <a href='/signup/'>registrar-se</a>
+        {% endif %}
+      </div>
+      <div id="main">
+        <div id="col1">
+
+            <ul>
+                {% if user.is_authenticated %}
+                <li><a class="menu" href="/home/">Presentar</a></li>
+		{% if not user.is_superuser %}
+                <li><a class="menu" href="/edit/user/{{user.id}}">Configuració</a></li>
+		{% else %}
+		<li><a class="menu" href="/admin/">Administració</li></a>
+		{% endif %}
+                {% endif %}
+		<li><a class="menu" href="/introduccio/">Introducció</a></li>
+		<li><a class="menu" href="/material/">Material</a></li>
+		<li><a class="menu" href="/dates/">Dates Importants</a></li>
+		<li><a class="menu" href="/competicio/">Competició</a></li>
+		<li><a class="menu" href="/resultats/">Resultats</a></li>
+		<li><a class="menu" href="/mesinfo/">Més informació</a></li>
+	    </ul>
+
+        </div>
+        <div id="col3">
+	  {% block content %}{% endblock %}
+          <div id="ie_clearing"></div>
+        </div>
+      </div>
+      <div id="footer"><small>Col·laboradors:</small>
+        <center>
+          <a href="http://www.udl.cat"><img src="/site_media/img/udl-logo-morat.png" /></a>
+          <a href="http://gcd.udl.cat"><img src="/site_media/img/logo_gcd-1.png" /></a>
+          <a href="http://ia.udl.cat"><img src="/site_media/img/ia-logo.png" /></a>
+        </center>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

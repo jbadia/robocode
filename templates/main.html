@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome to main page{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+<h3>Submits</h3>
+<br />
+{% if submits %}
+  <table>
+    <!--<tr><th>Categoria</th><th>&nbsp;</th><th>Fitxer</th><th>&nbsp;</th></tr>-->
+  {% for submit in submits %}
+    <tr>
+      <td>{{ submit.category }}: </td>
+      <td>&nbsp;</td>
+      <td><strong>{{ submit.title }}</strong></td>
+      <td><a href="{{submit.url}}">Descarregar </a>  <a href=/upload/del/submit/{{ submit.id }}/> Borrar</a> </td>
+    </tr>
+  {% endfor %}
+  </table>
+  {% else %}
+    <p> Encara no has pujat cap robot </p>
+  {% endif%}
+  <br />
+  {% if submit_obert %}
+  <a href=/upload/add/submit/> Presentar un robot </a>
+  {% endif %}
+{% endif %}
+
+{% endblock %}

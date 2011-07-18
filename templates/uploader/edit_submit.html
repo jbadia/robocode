@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Edit form{% endblock %}
+
+{% block content %}
+<h2>Editar submit</h2>
+<form enctype="multipart/form-data" action="/upload/edit/solver/{{ sol.id }}/" method="post">
+  <table>
+    <tr>
+      <th><label for="id_title">Titol:</label></th>
+      <td><input id="id_title" type="text" name="title" maxlength="50" value="{{ subm.title }}"/></td></tr>
+    <tr>
+      <th><label for="id_file">Fitxer: </label></th>
+      <td>Últim fitxer pujat: {{ fitxer }}<p><input type="file" name="file" id="id_file" value="{{ subm.file }}" /></p></td></tr>
+      <tr>
+	<th><label for="id_category">Categoria:</label></th>
+	{% for algo in cat %}
+	{{ algo }}
+	{% endfor %}
+	{% for aixo in subm.category.all %}
+	{{ aixo }}
+	{% endfor %}
+	<td><select multiple="multiple" name="category" id="id_category">
+	    {% for category in cat %}
+	    <option value="{{ category.id }}" {% for cat in subm.category.all %}{% ifequal cat category%} selected {% endifequal %} {% endfor %}> {{ category }} </option>
+	    {% endfor %}
+	  </select><br />Premeu la tecla "Control" -o "Command" en un Mac- per seleccionar més d'un valor.</td></tr>
+    <tr>
+      <th><label for="id_comments">Descripció:</label></th>
+      <td><textarea id="id_comments" rows="10" cols="40" name="comments">{{ subm.comments }}</textarea>
+    </td>
+    </tr>
+      
+  </table>
+  <input type="submit" value="Presentar">
+</form>
+
+
+{% endblock %}

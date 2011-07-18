@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Acció invàlida{% endblock %}
+{% block content %}
+   <h3>Acció invàlida</h3>
+
+    <p>
+      Perdoni, però aquesta es una acció invàlida.
+      <br />
+      Revisi el procediment i provi-ho de nou.
+    </p>
+    <br />
+      {% if missatge %}
+      <strong>Possible problema:</strong>
+      <br />
+      {{missatge}}
+      {% endif %}
+{% endblock %}
+

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  {% if form.errors %}
+    <p class="error">Perdoni, aquest no es un usuari o contrassenya valid</p>
+  {% endif %}
+
+  <form action="/home/" method="post">
+    <label for="username">usuari:</label>
+    <input type="text" name="username" value="" id="username">&nbsp;
+    <label for="password">contrassenya:</label>
+    <input type="password" name="password" value="" id="password">
+
+    <input type="submit" value="login" />
+  </form>
+
+{% endblock %}

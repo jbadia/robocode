@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Confirmació de borrat{% endblock %}
+
+{% block content %}
+<p> Estas segur de borrar {{ element.title }}?
+<p>
+<form name="input" action="/upload/del/{{ element.tipus }}/{{ element.id }}/" method="post">
+<input type="submit" value="Si">
+<input type="hidden" name="confirm" value="True">
+</form>
+<br />
+<form name="input" action="/home/" method="post">
+<input type="submit" value="No">
+</form>
+
+{% endblock %}

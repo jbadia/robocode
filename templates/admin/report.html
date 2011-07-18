@@ -1,0 +1,29 @@
+{% extends "admin/base_site.html" %}
+
+{% load adminmedia %}
+
+{% block extrahead %}
+{% endblock %}
+{% block coltype %}flex{% endblock %}
+
+{% block title %}Llista d'usuaris{% endblock %}
+{% block breadcrumbs %}<div class="breadcrumbs"><a href="/admin/">Home</a>&nbsp;&rsaquo;&nbsp;Llista de submits per equips</div>{% endblock %}
+
+{% block content %}
+  <div id="content-main">
+  <h1>Llista de submits per equips</h1>
+  <ul>
+  {% for perfil in user_profile_list %}
+    <il>
+      <b>{{perfil.username}}</b><br />{{perfil.integrants}}<br />{{perfil.escola_universitat}}<br />
+      <ul>
+        {% for submit in submit_list %}
+          {% ifequal submit.user_id perfil.user_id %}
+            <li><b>{{submit.categoria}}: </b><a href="/site_media/submit/{{submit.filename}}">{{submit.title}}</a></li>
+          {% endifequal %}
+        {% endfor %}
+      </ul>
+    </il>
+  {% endfor%}
+  </ul>
+{% endblock %}

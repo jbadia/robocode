@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if registre_obert %}
+
+<h3>Formulari de registre</h3>
+<br />
+  <form name="registrar" enctype="multipart/form-data" action="/signup/new/" method="post">
+  	{% if usuari_existent %}
+	<p style="color:red; font-weight:bold;"> nom d'usuari ja registrat, provin un altre</p>
+	{% endif %}
+    {% if form.errors %}
+    <p style="color: red;">
+      Si us plau corregeixi l'error{{ form.errors|pluralize }} de sota.
+    </p>
+    {% endif %}
+            <table>
+              <tr>
+                <th><label for="id_username">Equip:</label></th>
+                <td><input id="id_username" type="text" name="username" maxlength="30" /></td>
+                <td><div id="username" class="erroni">Nom invàlid</div></td>
+              </tr>
+              <tr>
+                <th><label for="id_password">Contrassenya:</label></th>
+                <td><input type="password" name="password" id="id_password" /></td>
+                <td><div id="password" class="erroni">Contrassenya invàlida</div></td>
+              </tr>
+              <tr>
+                <th><label for="id_confirm_password">Confirmar contrassenya:</label></th>
+                <td><input type="password" name="confirm_password" id="id_confirm_password" /></td>
+                <td><div id="confirm_password" class="erroni">Validació errònia</div></td>
+              </tr>
+              <tr>
+                <th><label for="id_email">Email:</label></th>
+                <td><input id="id_email" type="text" name="email" maxlength="75" /></td>
+                <td><div id="email" class="erroni">Correu electrònic invàlid</div></td>
+              </tr>
+              <tr>
+                <th><label for="id_integrants">Integrants:</label></th>
+                <td><input id="id_integrants" type="text" name="integrants" maxlength="300" /></td>
+                <td><div id="integrants" class="erroni">Camp en blanc</div></td>
+              </tr>
+              <tr>
+                <th><label for="id_escola_universitat">Escola universitat:</label></th>
+                <td><input id="id_escola_universitat" type="text" name="escola_universitat" maxlength="30" /></td>
+                <td><div id="escola_universitat" class="erroni">Camp en blanc</div></td>
+              </tr>
+              <tr><th>&nbsp;</th><td><input class="boto" type=button value="Registrar" onClick="validarFormulariRegistre()"></td><td>&nbsp;</td></tr>
+            </table>
+  </form>
+  <br />
+{% else %}
+  <p>Periode de registre finalitzat </p>
+{% endif %}
+  <br />
+  <p>
+  En cas de trobar qualsevol problema, pot contactar amb la
+  <a href="mailto:jargelich@diei.udl.cat">Organització Robocode</a>.
+  </p>
+{% endblock %}

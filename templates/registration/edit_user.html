@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h3>Configuració de la compta d'usuari</h3>
+  {% if form.errors %}
+    <p class="error">Perdoni, aquest no és un usuari o contrassenya valid</p>
+  {% endif %}
+  <h4> {{ user }}'s profile: </h4>
+  <form name="modificar" enctype="multipart/form-data" action="/edit/user/{{ user.id }}/profile/" method="post">
+    <table>
+      <tr>
+        <th><label for="email">Correu:</label></th>
+        <td><input type="text" name="email" value="{{ user.email }}"></td>
+        <td><div id="email" class="erroni">Correu electrònic invàlid</div></td>
+      </tr>
+      <tr>
+        <th><label for="integrants">Integrants:</label></th>
+        <td><input type="text" name="integrants" value="{{ integrants }}"></td>
+        <td><div id="integrants" class="erroni">Camp en blanc</div></td>
+      </tr>
+      <tr>
+        <th><label for="escola_universitat">Escola / universitat:</label></th>
+        <td><input type="text" name="escola_universitat" value="{{ escola_universitat }}"></td>
+        <td><div id="escola_universitat" class="erroni">Camp en blanc</div></td>
+      </tr>
+      <tr><th>&nbsp;</th><td><input class="boto" type=button value="Canviar" onClick="validarFormulariModificacio()"></td><td>&nbsp;</td></tr>
+    </table>
+    
+  </form>
+  <br />
+  <br />
+  <h4> Canviar contrassenya: </h4>
+  <form name="modpass" action="/edit/user/{{ user.id }}/passwd/" method="post">
+    <table>
+      <tr>
+        <th><label for="old_passwd">Anterior contrassenya:</label></th>
+        <td><input type="password" name="old_passwd"></td>
+        <td><div id="old_passwd" class="erroni">Contrassenya incorrecta</div></td>
+      </tr>
+      <tr>
+        <th><label for="new_passwd">Nova contrassenya:</label></th>
+        <td><input type="password" name="new_passwd"></td>
+        <td><div id="new_passwd" class="erroni">Contrassenya invàlida</div></td>
+      </tr>
+      <tr>
+        <th><label for="confirm_password">Confirmar contrassenya:</label></th>
+        <td><input type="password" name="confirm_password"></td>
+        <td><div id="confirm_password" class="erroni">Validació errònia</div></td>
+      </tr>
+      <tr><th>&nbsp;</th><td><input class="boto" type=button value="Canviar" onClick="validarFormulariPassword()"></td><td>&nbsp;</td></tr>
+    </table>
+  </form>
+{% endblock %}
